@@ -1,48 +1,55 @@
+/*Global reset of margins and padding for different browsers */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* important styling code at top */
 body {
   margin: 0;
   display: grid;
   grid-template-areas:
-    ". hero projects ."
-    ". resume projects ."
-    ". about-me contact ."
-    ". footer footer .";
-  grid-template-columns: 2% 48% 48% 2%;
-  grid-template-rows: auto auto auto auto;
-  background-color: #f7f7f7; /* Soft white */
-  color: #333333; /* Dark grey for text */
+    ". hero ."
+    ". projects ."
+    ". resume ."
+    ". about-me ."
+    ". contact-me ."
+    ". footer .";
+  grid-template-columns: 5% 90% 5%;
+  grid-template-rows: auto auto auto auto auto auto;
+  background-color: #f7f7f7;
+  color: #333333;
+  font-family: "Roboto", sans-serif;
+  font-size: 16;
 }
-
-/* Mobile Layout */
-@media screen and (max-width: 768px) {
-  body {
-    margin: 0;
-    display: grid;
-    grid-template-areas:
-      ". hero ."
-      ". projects ."
-      ". resume ."
-      ". about-me ."
-      ". contact ."
-      ". footer .";
-    grid-template-columns: 5% 90% 5%;
-    grid-template-rows: auto auto auto auto;
-  }
-}
-
-@media screen and (min-width: 1220px) {
+@media screen and (min-width: 800px) {
   body {
     margin: 0;
     display: grid;
     grid-template-areas:
       ". hero projects ."
       ". resume projects ."
-      ". about-me contact ."
+      ". about-me contact-me ."
       ". footer footer .";
-    grid-template-columns: 5% 40% 40% 5%;
+    grid-template-columns: 2% 48% 48% 2%;
     grid-template-rows: auto auto auto auto;
+    font-size: 18;
   }
 }
-
+@media screen and (min-width: 1200px) {
+  body {
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+      ". hero projects ."
+      ". resume projects ."
+      ". about-me contact-me ."
+      ". footer footer .";
+    grid-template-columns: 5% 45% 45% 5%;
+    grid-template-rows: auto auto auto auto;
+    font-size: 20;
+  }
+}
 @media screen and (min-width: 1400px) {
   body {
     margin: 0;
@@ -50,214 +57,278 @@ body {
     grid-template-areas:
       ". hero projects ."
       ". resume projects ."
-      ". about-me contact ."
+      ". about-me contact-me ."
       ". footer footer .";
-    grid-template-columns: 15% 30% 30% 15%;
+    grid-template-columns: 20% 30% 30% 20%;
     grid-template-rows: auto auto auto auto;
+    font-size: 22;
   }
 }
 
 #hero {
   grid-area: hero;
   background-color: #eeeeee;
-  padding: 15px;
-  /*border: 5px solid #0077cc; */
 }
-
 #projects {
   grid-area: projects;
   background-color: #cccccc;
 }
-
+#resume {
+  grid-area: resume;
+  background-color: #dddddd;
+}
 #about-me {
   grid-area: about-me;
   background-color: #bbbbbb;
 }
-
-#resume {
-  grid-area: resume;
-  background-color: #dddddd;
-  /*border: 5px solid #6a1b9a; */
-}
-
 #contact-me {
-  grid-area: contact;
+  grid-area: contact-me;
   background-color: #333333;
   border: 5px solid #ff9800;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+  /*border + padding left must equal the padding left for the non-border sections*/
 }
-
-footer {
+#footer {
   grid-area: footer;
   background-color: #dddddd;
 }
 
-h1 {
-  color: #0077cc;
+#hero,
+#projects,
+#resume,
+#about-me,
+#footer {
+  margin: 0;
+  padding: 15px;
+  /*contact-me must have similar alignment */
+}
+
+/* #hero */
+#hero {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "h1 ."
+    ". ."
+    "paragraph1 ."
+    "paragraph2 image"
+    ". image";
+  grid-template-columns: 65% 35%;
+  grid-template-rows: auto 10px auto auto auto;
+}
+#hero h1 {
+  grid-area: h1;
+}
+#hero img {
+  grid-area: image;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+#hero :nth-child(3) {
+  grid-area: paragraph1; /* selects the first <p> element */
+}
+#hero :nth-child(4) {
+  grid-area: paragraph2; /* selects the second <p> element */
+}
+
+/* #projects */
+#projects {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "h2 ."
+    ". ."
+    "link1 description1"
+    "link2 description2"
+    "link3 description3";
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto 10px auto auto auto;
+}
+#projects p {
+  padding-left: 5px;
+}
+#projects h2 {
+  grid-area: h2;
+}
+#projects a:nth-of-type(1) {
+  grid-area: link1;
+}
+#projects a:nth-of-type(2) {
+  grid-area: link2;
+}
+#projects a:nth-of-type(3) {
+  grid-area: link3;
+}
+#projects p:nth-of-type(1) {
+  grid-area: description1;
+}
+#projects p:nth-of-type(2) {
+  grid-area: description2;
+}
+#projects p:nth-of-type(3) {
+  grid-area: description3;
+}
+
+/* #resume */
+#resume {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "h2 . ."
+    ". . ."
+    "image . paragraph1"
+    "image . paragraph2";
+  grid-template-columns: 25% 40% 35%;
+  grid-template-rows: auto 10px auto auto;
+}
+#resume h2 {
+  grid-area: h2;
+}
+#resume a {
+  grid-area: image;
+}
+#resume img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
+#resume a img:hover {
+  border: 3px solid #6a1b9a;
+}
+#resume p:nth-of-type(1) {
+  grid-area: paragraph1;
+}
+#resume p:nth-of-type(2) {
+  grid-area: paragraph2;
+}
+
+/* about-me */
+#about-me {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "h2 h2"
+    ". ."
+    "h3-left h3-right"
+    "ul-left ul-right";
+  grid-template-columns: 65% 35%;
+  grid-template-rows: auto 10px auto auto;
+}
+#about-me h2 {
+  grid-area: h2;
+}
+#about-me h3:nth-of-type(1) {
+  grid-area: h3-left;
+}
+#about-me h3:nth-of-type(2) {
+  grid-area: h3-right;
+}
+#about-me ul:nth-of-type(1) {
+  grid-area: ul-left;
+}
+#about-me ul:nth-of-type(2) {
+  grid-area: ul-right;
+}
+#about-me ul {
+  list-style-type: none;
+}
+
+/* contact-me */
+#contact-me {
+  margin: 0;
+  display: grid;
+  grid-template-areas:
+    "h2 h2"
+    ". ."
+    "email email";
+  grid-template-columns: 65% 35%;
+  grid-template-rows: auto 10px auto;
+}
+#contact-me p {
+  grid-area: email;
+}
+
+/* footer */
+#footer {
+  margin: 0;
+  display: grid;
+  grid-template-areas: "copyright . link icons";
+  grid-template-columns: 50% 15px auto auto;
+  grid-template-rows: auto;
+}
+#footer p {
+  grid-area: copyright;
+}
+#footer a:nth-of-type(1) {
+  grid-area: link;
+}
+#footer .social-media-icons {
+  grid-area: icons;
+}
+.social-media-icons {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+@media screen and (min-width: 800px) {
+  .social-media-icons {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+
+/* Colors and font styling, less important and more specific styling kept at bottom*/
+.fa {
+  padding: 0px;
+  font-size: 20px;
+  width: 25px;
+  text-align: center;
+  text-decoration: none;
+}
+h1,
+h2 {
+  font-family: "Merriweather", serif;
+  /* font-family: 'Libre Baskerville', serif; */
+  /*body font-family: see above */
 }
 
 a {
-  color: #0077cc; /* Your chosen color for links */
-  text-decoration: none; /* Removes underline */
-  font-weight: bold;
-}
-
-a:hover {
-  color: #005599; /* Darker color for hover effect */
-  /* Underline on hover, optional 'text-decoration: underline;' */
-}
-
-/* Add any specific styling you need for each section below this line */
-.bold {
-  font-weight: bold;
-}
-
-.purple {
-  color: #6a1b9a;
-}
-
-.orange {
-  color: #ff9800;
-}
-
-.blue {
   color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
 }
-
-.green {
-  color: darkgreen;
+a:hover {
+  color: #005599;
 }
 
 .circle {
   border-radius: 50%;
 }
-.picture {
-  height: 15vh;
-  margin-top: 10px;
+.bold {
+  font-weight: bold;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border-radius: 10px;
-  align-items: center;
-  max-width: 600px;
+.purple {
+  color: #6a1b9a;
 }
-
-.first {
-  align-items: flex-start;
-  height: 40vh;
-  width: 90%;
+.orange {
+  color: #ff9800;
+}
+.blue {
+  color: #0077cc;
+}
+.green {
+  color: darkgreen;
 }
 
-.content-container {
-  display: flex; /* Changing to flex for easier vertical alignment */
-  flex-direction: column; /* Stacking elements vertically */
-  align-items: flex-start; /* Aligning to the left */
-  width: 90%; /* You can adjust this */
-}
+/* 
 
-.project-row {
-  /* Flexbox to organize link and description horizontally */
-  display: flex;
-  flex-direction: column; /* Stack link and description vertically */
-  align-items: flex-start; /* Aligning to the left */
-  width: 100%;
-  margin-bottom: 10px; /* Adds space between each project row */
-}
-
-/* Optional - You can add more specific padding or margin to the link and description if needed */
-.project-link {
-  padding: 5px 0; /* Adds vertical padding */
-}
-
-.project-description {
-  padding: 5px 0; /* Adds vertical padding */
-  overflow-wrap: break-word;
-}
-
-#resume a img {
-  height: 13vh;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  max-width: 120px;
-}
-
-#resume a img:hover {
-  border: 3px solid #6a1b9a;
-}
-
-.content-container > * {
-  margin-left: 20px;
-}
-
-#contact-me .content-container > * {
-  margin-left: 15px;
-}
-#resume .resume-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
-
-#resume .text-blocks {
-  display: flex;
-  flex-direction: column;
-  flex: 5; /* You can adjust this percentage */
-}
-
-#resume .text-block {
-  margin-bottom: 10px; /* Adds space between text blocks */
-}
-
-#resume a {
-  flex: 2;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-#resume a img {
-  width: 100%;
-  border-radius: 20px;
-}
-
-#about-me .content-container ul {
-  padding: 0;
-  list-style-type: none; /* Optional: To remove bullet points */
-}
-
-#about-me h3 {
-  margin-bottom: 0px; /* Adjust the value to your liking */
-}
-
-footer {
-  display: flex;
-}
-.footer-container {
-  display: flex;
-  flex: 1;
-  margin-left: 20px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.social-media-icons {
-  display: flex;
-  justify-content: center;
-}
-
-.fa {
-  padding: 2px;
-  font-size: 20px;
-  width: 30px;
-  text-align: center;
-  text-decoration: none;
-}
-
-/* Add a hover effect if you want */
-.fa:hover {
-  color: #005599;
-}
+*/
